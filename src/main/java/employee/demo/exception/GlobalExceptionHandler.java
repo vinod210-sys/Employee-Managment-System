@@ -1,4 +1,4 @@
-package student.demo.exception;
+package employee.demo.exception;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -24,14 +25,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleStudentNotFound(
-            StudentNotFoundException ex) {
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleEmployeeNotFound(
+            EmployeeNotFoundException ex) {
 
         Map<String, String> error = new HashMap<>();
         error.put("message", ex.getMessage());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicateEmail(
+            DuplicateEmailException ex) {
+
+        Map<String, String> error = new HashMap<>();
+        error.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(RuntimeException.class)
@@ -43,13 +54,5 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    @ExceptionHandler(DuplicateEmailException.class)
-public ResponseEntity<Map<String, String>> handleDuplicateEmail(
-        DuplicateEmailException ex) {
-
-    Map<String, String> error = new HashMap<>();
-    error.put("message", ex.getMessage());
-
-    return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 }
-}
+

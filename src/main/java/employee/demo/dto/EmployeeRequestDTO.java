@@ -1,10 +1,10 @@
-package student.demo.DTO;
+package employee.demo.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
-public class StudentRequestDTO {
+public class EmployeeRequestDTO {
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -13,11 +13,21 @@ public class StudentRequestDTO {
     @Email(message = "Enter a valid email")
     private String email;
 
-    @Positive(message = "Age must be greater than zero")
-    private int age;
-
     @NotBlank(message = "Department is required")
     private String department;
+
+    @Positive(message = "Salary must be greater than zero")
+    private double salary;
+
+    public EmployeeRequestDTO() {
+    }
+
+    public EmployeeRequestDTO(String name, String email, String department, double salary) {
+        this.name = name;
+        this.email = email;
+        this.department = department;
+        this.salary = salary;
+    }
 
     public String getName() {
         return name;
@@ -35,14 +45,6 @@ public class StudentRequestDTO {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -50,4 +52,13 @@ public class StudentRequestDTO {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }
+

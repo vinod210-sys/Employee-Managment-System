@@ -1,44 +1,48 @@
 # Student Management System
 
-## Project Overview
-A Student Management System developed using Java and Spring Boot to manage student records through RESTful APIs. It supports CRUD operations, validation, searching, sorting, pagination, and duplicate email prevention.
+A REST API-based Student Management System developed using Java and Spring Boot. This project allows users to manage student records and store student information in a MySQL database.
 
 ## Technologies Used
-- Java 17
+
+- Java 25
 - Spring Boot 4.1.2
 - Spring Data JPA
 - Hibernate
 - MySQL
 - Maven
-- Swagger / OpenAPI
+- Swagger UI
 - Postman
 
 ## Features
+
 - Add a new student
-- Retrieve all students
-- Retrieve a student by ID
+- View all students
+- Get student details by ID
 - Update student details
 - Delete a student
+- Search students by name
 - Search students by department
-- Search by exact and partial name
 - Pagination and sorting
-- DTO implementation
+- DTO-based request and response
 - Input validation
-- Custom exception handling
+- Global exception handling
 - Duplicate email prevention
-- Swagger API documentation
+- API documentation using Swagger
 
-## Database Configuration
+## Database Setup
 
-Create a MySQL database:
+Create the database in MySQL:
 
 ```sql
 CREATE DATABASE student_management;
 ```
 
-Configure your local `application.properties`:
+## Application Configuration
+
+Configure your MySQL username and password in `application.properties`:
 
 ```properties
+spring.application.name=student-management-system
 spring.datasource.url=jdbc:mysql://localhost:3306/student_management
 spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
@@ -47,22 +51,41 @@ spring.jpa.show-sql=true
 server.port=8080
 ```
 
-## Running the Project
+Do not upload your actual database password to GitHub.
+
+## How to Run the Project
 
 1. Clone the repository.
-2. Configure your MySQL database.
-3. Configure `application.properties`.
-4. Run the application using:
+2. Open the project in VS Code.
+3. Configure the MySQL database credentials.
+4. Run `EmployeesApplication.java`.
+5. The application starts on port `8082`.
 
-```bash
-mvn spring-boot:run
+## Swagger API Documentation
+
+Open this URL after starting the application:
+
+http://localhost:8082/swagger-ui/index.html
+
+You can view and test the REST APIs using Swagger UI.
+
+## Running API tests
+
+With the application running and connected to the configured MySQL database, run these commands from the project directory:
+
+```powershell
+node --test .\e2e\student-crud.test.mjs
+node --test .\e2e\student-search.test.mjs
+node --test .\e2e\student-dto-validation.test.mjs
 ```
 
-## API Documentation
+The tests create uniquely named students and delete them during cleanup. Set `STUDENT_API_URL` to test a different application URL.
 
-After starting the application, open:
+The existing Java test suite can be run with `.\mvnw.cmd test` (using the configured Java 25 JDK).
 
-http://localhost:8080/swagger-ui/index.html
+## GitHub Repository
+
+https://github.com/vinod210-sys/student-management-system-java
 
 ## Developer
 

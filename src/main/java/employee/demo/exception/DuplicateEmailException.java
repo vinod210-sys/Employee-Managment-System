@@ -1,4 +1,4 @@
-package student.demo.exception;
+package employee.demo.exception;
 
 public class DuplicateEmailException extends RuntimeException {
 
@@ -6,3 +6,4 @@ public class DuplicateEmailException extends RuntimeException {
         super(message);
     }
 }
+

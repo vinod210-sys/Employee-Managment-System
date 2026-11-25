@@ -1,13 +1,14 @@
-package student.demo;
+package employee.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class EmployeesApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
 }
+

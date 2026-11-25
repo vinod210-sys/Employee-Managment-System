@@ -1,4 +1,4 @@
-package student.demo.entity;
+package employee.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-public class Student {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,22 @@ public class Student {
     @Column(unique = true)
     private String email;
 
-    @Positive(message = "Age must be greater than zero")
-    private int age;
-
     @NotBlank(message = "Department is required")
     private String department;
+
+    @Positive(message = "Salary must be greater than zero")
+    private double salary;
+
+    public Employee() {
+    }
+
+    public Employee(int id, String name, String email, String department, double salary) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.department = department;
+        this.salary = salary;
+    }
 
     // Getters and Setters
 
@@ -56,14 +67,6 @@ public class Student {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -71,4 +74,13 @@ public class Student {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }
+
